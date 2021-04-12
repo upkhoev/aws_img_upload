@@ -15,7 +15,7 @@
       reader.onload = function(evt) {
         xhr.send(evt.target.result);
       };
-      reader.readAsBinaryString(file);
+      reader.readAsArrayBuffer(file);
     }
     function submit() {
       const input = document.getElementById('fileInput');

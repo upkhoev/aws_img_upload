@@ -64,7 +64,9 @@ app.post(/.*/, async function (req, res) {
         if (req.isImg) {
             // изображение нужно привести к размерам
             const sf = sharp(req.body);
-            const metadata = await sf.metadata();
+            const metadata = await sf.metadata().catch((err) => {
+                console.log(err);
+            });
             if (metadata === undefined) {
                 return res.status(400).send('unsupported image format');
             }
