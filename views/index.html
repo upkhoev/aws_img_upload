@@ -11,11 +11,11 @@
       const xhr = new XMLHttpRequest();
       xhr.open("POST", "http://localhost:3000/" + file.name, true);
       xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-      xhr.setRequestHeader("Content-type", "image/png");
+      xhr.setRequestHeader("Content-type", file.type);
       reader.onload = function(evt) {
-        xhr.send('data=' + evt.target.result);
+        xhr.send(evt.target.result);
       };
-      reader.readAsDataURL(file);
+      reader.readAsBinaryString(file);
     }
     function submit() {
       const input = document.getElementById('fileInput');

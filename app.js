@@ -57,6 +57,7 @@ app.post(/.*/, async function (req, res) {
     const fileName = decodeURIComponent(req.originalUrl.slice(1));
     console.log('request upload: ' + fileName);
 
+    // TODO проверка типа файла из body
     if (req.body.length) {
         const fileExt = fileName.split('.').pop();
         const name = fileName.split('.')[0];
@@ -64,7 +65,9 @@ app.post(/.*/, async function (req, res) {
             // изображение нужно привести к размерам
             const sf = sharp(req.body);
             const metadata = await sf.metadata();
-
+            if (metadata === undefined) {
+                return res.status(400).send('unsupported image format');
+            }
             for (let size in resizeImageParams) {
                 const width = resizeImageParams[size][0];
                 const height = resizeImageParams[size][1];
@@ -94,9 +97,9 @@ app.post(/.*/, async function (req, res) {
                 }
             });*/
         }
-        res.status(200).send('success');
+        return res.status(200).send('success');
     } else {
-        res.status(500).send('unsupported type');
+        return res.status(500).send('unsupported type');
     }
 
 });
