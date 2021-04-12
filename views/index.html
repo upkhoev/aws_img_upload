@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload image application</title>
+</head>
+<body>
+  <script type="application/javascript">
+    function FileUpload(file) {
+      const reader = new FileReader();
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://localhost:3000/" + file.name, true);
+      xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+      xhr.setRequestHeader("Content-type", "image/png");
+      reader.onload = function(evt) {
+        xhr.send('data=' + evt.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    function submit() {
+      const input = document.getElementById('fileInput');
+      if (input.files.length) {
+        FileUpload(input.files[0]);
+      }
+    }
+  </script>
+  <input type="file" id="fileInput">
+  <button onclick="submit()">Upload</button>
+</body>
+</html>

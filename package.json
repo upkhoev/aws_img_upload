@@ -1,0 +1,26 @@
+{
+  "name": "test2",
+  "version": "1.0.0",
+  "description": "upload image",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "node"
+  ],
+  "author": "Upkhoev Igor",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.884.0",
+    "body-parser": "^1.19.0",
+    "bull": "^3.22.0",
+    "config": "^3.3.6",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "sharp": "^0.28.1"
+  }
+}
