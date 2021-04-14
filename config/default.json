@@ -1,10 +1,12 @@
 {
-  "contentType": [
-    "image/jpeg",
-    "image/png",
-    "application/pdf"
-  ],
-  "maxUploadSize": 1048576,
+  "files":  {
+    "contentTypes": [
+      "image/jpeg",
+      "image/png",
+      "application/pdf"
+    ],
+    "maxUploadSize": 1048576
+  },
   "aws": {
     "endpoint": "s3.amazonaws.com",
     "bucket": "savl-test",

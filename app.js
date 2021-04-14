@@ -13,7 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-const contentTypes = config.get('contentType');
+const contentTypes = config.get('files.contentTypes');
 if (!contentTypes || !contentTypes.length) {
     throw new Error('Configure content types');
 }
@@ -21,7 +21,7 @@ if (!contentTypes || !contentTypes.length) {
 for (let i = 0; i < contentTypes.length; i++) {
     app.use(bodyParser.raw({
         type: contentTypes[i],
-        limit: config.get('maxUploadSize'),
+        limit: config.get('files.maxUploadSize'),
         verify: (req, res, buf, encoding) => {
             req.isImg = req.headers['content-type'].indexOf('image') !== -1;
         }
@@ -101,7 +101,7 @@ app.post(/.*/, async function (req, res) {
         }
         return res.status(200).send('success');
     } else {
-        return res.status(500).send('unsupported type');
+        return res.status(400).send('unsupported type');
     }
 
 });
